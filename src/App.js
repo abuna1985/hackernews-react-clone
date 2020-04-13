@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import List from './components/List';
-import Search from './components/Search';
+import InputWithLabel from './components/InputWithLabel';
 import Header from './components/Header';
 
 
@@ -51,7 +51,9 @@ const App = () => {
     <div>               
       <Header/>
       <main>
-        <Search search={searchTerm} onSearch={handleSearch} />
+        <InputWithLabel id="search" type="text" value={searchTerm} onInputChange={handleSearch}>
+          <strong>Search:</strong>
+        </InputWithLabel>
         <hr />
         <List list={searchedStories} />
       </main>
