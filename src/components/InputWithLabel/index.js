@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 const InputWithLabel = ({ id, value, type = 'text', onInputChange, isFocused, children }) => {
+  const inputRef = useRef();
+
+  useEffect(() => {
+    if (isFocused && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isFocused]);
+  
   return (
     <section>
       <label htmlFor={id}>{children}</label>
       &nbsp;
-      <input id={id} type={type} value={value} onChange={onInputChange} isFocused />
+      <input ref={inputRef} id={id} type={type} value={value} onChange={onInputChange} />
     </section>
   );
 }
